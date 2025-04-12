@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend  # This is where your frontend Dockerfile should be
+      dockerfile: Dockerfile # If your Dockerfile is named differently, specify it here
+    ports:
+      - "5173:5173"
+    networks:
+      - my-network
+
+  backend:
+    build:
+      context: ./backend  # This is where your backend Dockerfile should be
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
